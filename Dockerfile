@@ -16,7 +16,8 @@ ENV PYTHON_VERSION=3.9 \
 # MicroDNF is recommended over YUM for Building Container Images
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
-RUN microdnf install -y python39 \
+RUN microdnf update \
+    && microdnf install -y python39 \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
