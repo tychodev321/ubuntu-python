@@ -1,7 +1,7 @@
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
 # FROM redhat/ubi8/ubi-minimal:8.4
 
-MAINTAINER "TychoDev <cloud.ops@tychodev.com>"
+LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
 
 ARG gitlab_pip_token
 ENV GITLAB_PIP_TOKEN=$gitlab_pip_token
