@@ -26,3 +26,5 @@ RUN pip3 install poetry \
 #USER 1001
 
 RUN python3 --version && pip3 --version
+
+CMD ["echo", "This is a 'Purpose Built Image', It is not meant to be ran directly"]
