@@ -17,7 +17,8 @@ ENV PYTHON_VERSION=3.9 \
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
 RUN microdnf install -y python39 \
-    && microdnf clean all
+    && microdnf clean all \
+    && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
 RUN pip3 install poetry \
     && poetry config virtualenvs.create false \
