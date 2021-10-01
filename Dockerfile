@@ -25,8 +25,8 @@ RUN pip3 install poetry \
     && poetry config virtualenvs.create false \
     && poetry config http-basic.gitlab ${GITLAB_PIP_USER} ${GITLAB_PIP_TOKEN} \
 
-USER 1001
-
 RUN python3 --version && pip3 --version
+
+USER 1001
 
 CMD ["echo", "This is a 'Purpose Built Image', It is not meant to be ran directly"]
