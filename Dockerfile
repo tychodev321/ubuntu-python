@@ -25,7 +25,7 @@ RUN pip3 install poetry \
     && poetry config virtualenvs.create false \
     && poetry config http-basic.gitlab ${GITLAB_PIP_USER} ${GITLAB_PIP_TOKEN} \
 
-#USER 1001
+USER 1001
 
 RUN python3 --version && pip3 --version
 
