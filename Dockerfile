@@ -3,10 +3,6 @@ FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4
 
 LABEL maintainer="TychoDev <cloud.ops@tychodev.com>"
 
-ARG gitlab_pip_token
-ENV GITLAB_PIP_TOKEN=$gitlab_pip_token
-ENV GITLAB_PIP_USER=__token__
-
 ENV PYTHON_VERSION=3.9 \
     PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
@@ -21,10 +17,7 @@ RUN microdnf update -y \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
-RUN pip3 install poetry \
-    && poetry config virtualenvs.create false \
-    && poetry config http-basic.gitlab ${GITLAB_PIP_USER} ${GITLAB_PIP_TOKEN} \
-
+RUN pip3 install poetry
 RUN python3 --version && pip3 --version
 
 # USER 1001
