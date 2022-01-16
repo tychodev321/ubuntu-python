@@ -17,7 +17,7 @@ RUN microdnf update -y \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
-RUN pip3 install poetry
+RUN pip3 install --upgrade pip && pip3 install poetry
 RUN python3 --version && pip3 --version
 
 # USER 1001
