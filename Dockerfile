@@ -3,7 +3,7 @@ FROM registry.access.redhat.com/ubi9/ubi-minimal:9.0.0
 
 LABEL maintainer=""
 
-ENV PYTHON_VERSION=3.9 \
+ENV PYTHON_VERSION=39 \
     PATH=$HOME/.local/bin/:$PATH \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
@@ -13,7 +13,8 @@ ENV PYTHON_VERSION=3.9 \
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
 RUN microdnf update -y \
-    && microdnf install -y python39 \
+    && microdnf install -y python${PYTHON_VERSION} \
+    && microdnf install -y python${PYTHON_VERSION}-pip \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
