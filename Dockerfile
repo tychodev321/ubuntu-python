@@ -8,7 +8,7 @@ ENV PYTHON_VERSION=3 \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
     PIP_NO_CACHE_DIR=off \
-    POETRY_VERSION=1.1.15
+    POETRY_VERSION=1.2.0
 
 # MicroDNF is recommended over YUM for Building Container Images
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
