@@ -20,10 +20,10 @@ RUN microdnf update -y \
 
 # Make sure to upgrade pip3
 RUN pip3 install --upgrade pip \ 
-    && pip3 install --user pipx \
-    # && python3 -m pipx ensurepath --force
+    && python3 -m pip install --user pipx \
+    && python3 -m pipx ensurepath --force
 
-ENV PATH="${PATH}:$(python3 -c 'import site; print(site.USER_BASE)')/bin"
+ENV PATH=/root/.local/bin:$PATH
 
 RUN pipx install poetry==1.2.0
 RUN python3 --version && pip3 --version
