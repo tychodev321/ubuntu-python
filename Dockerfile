@@ -26,8 +26,7 @@ RUN pip3 install --upgrade pip \
 
 ENV PATH=/root/.local/bin:$PATH
 
-RUN pipx install poetry==${POETRY_VERSION} \
-    && pip3 install certifi==2022.06.15.2
+RUN pipx install poetry==${POETRY_VERSION}
 
 RUN python3 --version && pip3 --version
 
