@@ -23,7 +23,7 @@ RUN pip3 install --upgrade pip \
     && pip3 install --user pipx \
     # && python3 -m pipx ensurepath --force
 
-ENV PATH=$(python3 -m site --user-base)/bin:$PATH
+ENV PATH="${PATH}:$(python3 -c 'import site; print(site.USER_BASE)')/bin"
 
 RUN pipx install poetry==1.2.0
 RUN python3 --version && pip3 --version
