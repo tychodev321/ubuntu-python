@@ -21,7 +21,7 @@ RUN microdnf update -y \
 # Make sure to upgrade pip3
 RUN pip3 install --upgrade pip \ 
     && python3 -m pip install --user pipx \
-    && python3 -m pipx ensurepath \
+    && python3 -m pipx ensurepath --force \
     && pipx install poetry==1.2.0
     
 RUN python3 --version && pip3 --version
