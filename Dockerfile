@@ -23,14 +23,13 @@ RUN microdnf update -y \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
-# Install pipx
-RUN python -m pip install --user pipx \
-    && python -m pipx ensurepath --force
-
 # Configure Python
 ENV PATH=/root/.local/bin:$PATH
 
-RUN pipx install poetry==${POETRY_VERSION}
+# Install pipx and poetry
+RUN python -m pip install --user pipx \
+    && python -m pipx ensurepath --force \
+    && pipx install poetry==${POETRY_VERSION}
 
 RUN echo "python version: $(python --version)" \
     && echo "pip version - $(python -m pip --version)" \
