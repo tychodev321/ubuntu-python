@@ -33,7 +33,8 @@ ENV PATH=/root/.local/bin:$PATH
 RUN pipx install poetry==${POETRY_VERSION}
 
 RUN echo "python version: $(python --version)" \
-    && echo "pip version - $(python -m pip --version)"
+    && echo "pip version - $(python -m pip --version)" \
+    && echo "git version: $(git --version)" \
     && microdnf repolist
 
 USER 1001
