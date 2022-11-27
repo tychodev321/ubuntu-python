@@ -8,28 +8,34 @@ ENV PYTHON_VERSION=3 \
     PYTHONUNBUFFERED=1 \
     PYTHONIOENCODING=UTF-8 \
     PIP_NO_CACHE_DIR=off \
-    POETRY_VERSION=1.2.0
+    POETRY_VERSION=1.2.2
 
 # MicroDNF is recommended over YUM for Building Container Images
 # https://www.redhat.com/en/blog/introducing-red-hat-enterprise-linux-atomic-base-image
 
+# Install the latest version of Python
 RUN microdnf update -y \
     && microdnf install -y python${PYTHON_VERSION} \
+    && microdnf install -y python${PYTHON_VERSION}-devel \
+    && microdnf install -y python${PYTHON_VERSION}-setuptools \
     && microdnf install -y python${PYTHON_VERSION}-pip \
+    && microdnf install -y git \
     && microdnf clean all \
     && rm -rf /var/cache/* /var/log/dnf* /var/log/yum.*
 
-# Make sure to upgrade pip3
-RUN pip3 install --upgrade pip \ 
-    && python3 -m pip install --user pipx \
-    && python3 -m pipx ensurepath --force
+# Install pipx
+RUN python -m pip install --user pipx \
+    && python -m pipx ensurepath --force
 
+# Configure Python
 ENV PATH=/root/.local/bin:$PATH
 
 RUN pipx install poetry==${POETRY_VERSION}
 
-RUN python3 --version && pip3 --version
+RUN echo "python version: $(python --version)" \
+    && echo "pip version - $(python -m pip --version)" \
+    && microdnf repolist
 
-# USER 1001
+USER 1001
 
 CMD ["echo", "This is a 'Purpose Built Image', It is not meant to be ran directly"]
