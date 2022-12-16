@@ -37,7 +37,7 @@ RUN python -m pip install --user pipx \
     && pipx install poetry==${POETRY_VERSION}
 
 RUN echo "python version: $(python --version)" \
-    && echo "pip version - $(python -m pip --version)" \
+    && echo "pip version: $(python -m pip --version)" \
     && echo "git version: $(git --version)" \
     && microdnf repolist
 
