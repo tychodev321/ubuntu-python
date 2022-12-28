@@ -38,6 +38,7 @@ RUN python -m pip install --user pipx \
 
 RUN echo "python version: $(python --version)" \
     && echo "pip version: $(python -m pip --version)" \
+    && echo "poetry about: $(poetry about)" \
     && echo "git version: $(git --version)" \
     && microdnf repolist
 
