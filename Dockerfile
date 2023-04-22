@@ -16,6 +16,14 @@ RUN apt update -y && apt upgrade -y \
     && apt install -y tar \
     && apt install -y wget \
     && apt install -y curl \
+    && apt clean -y \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python
+RUN apt update -y && apt upgrade -y \
+    && apt install -y python3-pip \
+    && apt install -y python3-venv \
+    && apt install -y python3-setuptools \
     && apt install -y python-is-python3 \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
