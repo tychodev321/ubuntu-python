@@ -1,1 +1,1 @@
-# ubi-python
+# ubuntu-python
