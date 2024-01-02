@@ -33,6 +33,8 @@ RUN apt update -y && apt upgrade -y \
 
 # Configure Python
 ENV PATH=/root/.local/bin:$PATH
+# Create .ssh directory
+RUN mkdir -p /root/.ssh
 
 # Install pipx and poetry
 RUN python -m pip install --user pipx \
