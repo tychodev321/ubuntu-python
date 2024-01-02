@@ -19,7 +19,6 @@ RUN apt update -y && apt upgrade -y \
     && apt install -y curl \
     && apt install -y jq \
     && apt install -y git \
-    && apt install -y openssh-client \
     && apt clean -y \
     && rm -rf /var/lib/apt/lists/*
 
