@@ -33,9 +33,12 @@ RUN apt update -y && apt upgrade -y \
 
 # Configure Python
 ENV PATH=/root/.local/bin:$PATH
-# Create .ssh directory
-RUN mkdir -p /root/.ssh
 
+# Create .ssh directory and add Github SSH Keys
+RUN mkdir -p -m 0700 /root/.ssh \
+    && curl --silent https://api.github.com/meta | jq --raw-output '"github.com "+.ssh_keys[]' >> /root/.ssh/known_hosts \
+    && chmod 600 /root/.ssh/known_hosts
+    
 # Install pipx and poetry
 RUN python -m pip install --user pipx \
     && python -m pipx ensurepath --force \
